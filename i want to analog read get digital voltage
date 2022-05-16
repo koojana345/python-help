@@ -1,0 +1,17 @@
+import pyfirmata
+import time
+import serial
+
+board = pyfirmata.Arduino('COM4')
+it = pyfirmata.util.Iterator(board)
+it.start()
+
+analog_input = board.get_pin('a:0:i')
+
+
+while True:
+     analog_value = analog_input.read()
+     if analog_value is not None:
+        X = float(analog_value * 24 ) / 1023 
+        print(X)
+    
